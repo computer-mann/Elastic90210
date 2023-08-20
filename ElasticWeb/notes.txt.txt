@@ -1,0 +1,3 @@
+send data to elasticsearch
+
+the app	logs and json data fro jsonplaceholder typicode
