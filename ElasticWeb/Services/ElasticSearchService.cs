@@ -5,14 +5,41 @@ namespace ElasticWeb.Services
     public class ElasticSearchService<T>:IElasticSearch<T> where T : class
     {
         private readonly string _index;
-        private readonly IElasticClient
+        private readonly IElasticClient _elasticClient;
 
-        public ElasticSearchService(string index)
+        public ElasticSearchService(string index, IElasticClient elasticClient)
         {
             _index = index;
+            _elasticClient = elasticClient;
         }
+        
 
         public T GetItem(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddorUpdate(T item)
+        {
+            throw new NotImplementedException(); 
+        }
+
+        public bool CreateIndexIfNotExist(string key) 
+        {
+            throw new NotImplementedException(); 
+        }
+
+        public Task<bool> AddorUpdate(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteItem(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> GetItems()
         {
             throw new NotImplementedException();
         }
@@ -21,5 +48,11 @@ namespace ElasticWeb.Services
     public interface IElasticSearch<T> where T : class
     {
         public T GetItem(string key);
+        public Task<bool> AddorUpdate(string key);
+        public bool DeleteItem(string key);
+        public Task<List<T>> GetItems();
     }
 }
+
+
+/*https://yamannasser.medium.com/simplifying-elasticsearch-crud-with-net-core-a-step-by-step-guide-25c86a12ae15*/
