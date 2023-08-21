@@ -7,16 +7,21 @@ namespace ElasticWeb
     {
         public static void Main(string[] args)
         {
+            var builder = WebApplication.CreateBuilder(args);
             Log.Logger =new LoggerConfiguration()
                   .WriteTo.Console()
-                  .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200")))
+                  .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
+                  {
+                      IndexFormat= "elastic90210-serilog-logs-{0:yyyy.MM}"
+                  })
+                  .ReadFrom.Configuration(builder.Configuration)
                   .CreateLogger();
                 
             try
             {
                 Log.Information("Application is starting up.");
-                var builder = WebApplication.CreateBuilder(args);
-                //builder.Host.;
+
+                builder.Host.UseSerilog();
                 var services = builder.Services;
                 // Add services to the container.
                 services.AddControllersWithViews();

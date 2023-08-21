@@ -15,11 +15,14 @@ namespace ElasticWeb.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Familiarity breeds content {activity}", Activity.Current?.Id);
+            //Log.Information("Familiarity breeds content {activity}", Activity.Current?.Id);
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("Recognize me -> {traceId}", HttpContext.TraceIdentifier);
             return View();
         }
 
