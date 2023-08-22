@@ -27,6 +27,7 @@ namespace ElasticWeb
                 services.AddControllersWithViews();
                 services.AddRouting(op => op.LowercaseUrls = true);
                 services.AddHttpClient();
+                StartUp.AddElasticSearchServices(services);
 
                 var app = builder.Build();
 

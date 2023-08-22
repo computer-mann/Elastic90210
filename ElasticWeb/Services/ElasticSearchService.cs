@@ -43,12 +43,24 @@ namespace ElasticWeb.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> CreateKey(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddMultiple(string key, IEnumerable<T> items)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public interface IElasticSearch<T> where T : class
     {
+        public Task<bool> CreateKey(string key);
         public T GetItem(string key);
-        public Task<bool> AddorUpdate(string key);
+        public Task<bool> AddorUpdate(string key); 
+        public Task<bool> AddMultiple(string key, IEnumerable<T> items);
         public bool DeleteItem(string key);
         public Task<List<T>> GetItems();
     }
