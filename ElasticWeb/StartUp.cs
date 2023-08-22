@@ -13,8 +13,9 @@ namespace ElasticWeb
 
         public static void AddElasticSearchServices(IServiceCollection services) 
         {
-            var elsticCon = new ConnectionSettings(new Uri("http://localhost"));
+            var elsticCon = new ConnectionSettings(new Uri("http://localhost:9200"));
             elsticCon.DefaultIndex("placeholder-posts");
+            elsticCon.DisableDirectStreaming(true);
             var client=new ElasticClient(elsticCon);
             services.AddSingleton<IElasticClient>(client);
 
